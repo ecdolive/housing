@@ -4,12 +4,11 @@ body, input, select {
   appearance: none;
   color: #424a50;
   font-family: -apple-system, '.SFNSText-Light', '.SFNSDisplay-Regular', 'Helvetica Neue', sans-serif;
-  /*font-family: 'Roboto', sans-serif;*/
   font-size: 14px;
   font-weight: 400;
 }
 body {
-  background-color: #f5f5f5;
+  background-color: #f6f6f6;
   margin: 0;
   transition: background-color .3s;
 }
@@ -264,7 +263,7 @@ body.menu-closed > .menu {
 .main {
   align-items: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-left: 360px;
   min-height: 100vh;
   transition: margin-left .3s;
@@ -280,6 +279,11 @@ body.menu-closed > .menu {
     width: 100vw;
     z-index: 9;
   }
+  .main > h1 {
+    font-family: 'Elsie', cursive;
+    font-size: 24px;
+    line-height: 52px;
+  }
   .main > .insight {
     flex: 1;
     font-size: 28px;
@@ -294,8 +298,7 @@ body.menu-closed > .menu {
       font-weight: 700;
       white-space: nowrap;
     }
-      .main > .insight > i-input.disabled,
-      .main > .insight > i-input[disabled] {
+      .main > .insight > .input.disabled {
         color: inherit;
         -webkit-text-fill-color: #424a50;
       }
@@ -308,8 +311,7 @@ body.menu-closed > .menu {
         outline: none;
         width: 0;
       }
-      .main > .insight input:disabled,
-      .main > .insight input[disabled] {
+      .main > .insight input:disabled {
         color: inherit;
         -webkit-text-fill-color: #424a50;
       }
@@ -380,6 +382,11 @@ and (max-width : 859px) {
   .main {
     margin-left: auto;
   }
+    .main > h1 {
+      font-size: 18px;
+      line-height: 36px;
+      margin: 8px;
+    }
     .main > .insight {
       margin-top: 40px;
     }
@@ -427,6 +434,23 @@ and (max-width : 479px) {
   .main {
     margin-left: auto;
   }
+    .main > .locations {
+      margin-top: 24px;
+    }
+      .main > .locations > li {
+        min-width: 56px;
+      }
+        .main > .locations > li > .avatar {
+          height: 48px;
+          width: 48px;
+        }
+        .main > .locations > li > .label {
+          font-size: 11px;
+        }
+    .main > .insight {
+      font-size: 18px;
+      line-height: 26px;
+    }
     .sparkline_dates > div {
       overflow: overlay;
     }
