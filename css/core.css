@@ -288,7 +288,7 @@ body.menu-closed > .menu {
     flex: 1;
     font-size: 28px;
     line-height: 38px;
-    margin: 8px auto;
+    margin: 30vh 16px;
     max-width: 664px;
     text-align: center;
     transition: margin .3s;
@@ -298,7 +298,7 @@ body.menu-closed > .menu {
       font-weight: 700;
       white-space: nowrap;
     }
-      .main > .insight > .input.disabled {
+      .main > .insight > i-input.disabled {
         color: inherit;
         -webkit-text-fill-color: #424a50;
       }
@@ -386,9 +386,6 @@ and (max-width : 859px) {
       font-size: 18px;
       line-height: 36px;
       margin: 8px;
-    }
-    .main > .insight {
-      margin-top: 40px;
     }
     body.menu-open > .main > .tint {
       display: block;
