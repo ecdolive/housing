@@ -32,75 +32,6 @@ a:hover {
 }
 
 /* Common */
-column, row {
-  display: flex;
-  flex: 1;
-}
-column {
-  flex-direction: column;
-}
-row {
-  align-items: flex-start;
-  flex-direction: row;
-}
-cell {
-  align-items: center;
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  height: 32px;
-  justify-content: flex-end;
-  margin: 0 12px 0 16px;
-}
-  cell > c-input {
-    display: flex;
-    flex: 6;
-  }
-    cell > c-input > input {
-      background-color: #f9f9f9;
-      border: 1px solid rgba(0,0,0,.04);
-      border-radius: 4px;
-      color: #0088cc;
-      font-weight: 700;
-      margin: 0;
-      outline: none;
-      padding: 4px;
-      text-align: right;
-      transition: border .3s, box-shadow .3s;
-      width: 100%;
-    }
-      cell > c-input > input.slave {
-        color: rgba(0,0,0,.5);
-        font-weight: 400;
-      }
-      cell > c-input > input:hover,
-      cell > c-input > input:focus {
-        border: 1px solid rgba(0,0,0,.3);
-      }
-    cell > c-input > input[type='checkbox'] {
-      margin: 0;
-      width: auto;
-    }
-    cell > c-input > input:disabled,
-    cell > c-input > input[disabled] {
-      background-color: transparent;
-      border: 1px solid rgba(0,0,0,0);
-      color: rgba(0,0,0,.5);
-      font-weight: inherit;
-      -webkit-text-fill-color: rgba(0,0,0,.5);
-    }
-      cell > c-input > input:disabled:hover,
-      cell > c-input > input[disabled]:hover {
-        border: 1px solid rgba(0,0,0,0);
-      }
-  cell > c-name {
-    align-items: center;
-    color: rgba(0,0,0,.5);
-    display: flex;
-    flex: 12;
-    font-size: 14px;
-  }
 table {
   margin-top: 48px;
 }
@@ -159,45 +90,6 @@ th {
     box-shadow: 0 3px 12px rgba(0,0,0,.15);
     /*color: rgb(255,255,255)*/
   }
-.date {
-  background-color: transparent;
-  border: 1px solid rgba(0,0,0,.08);
-  border-radius: 4px;
-}
-.date:hover {
-  border: 1px solid rgba(0,0,0,.3);
-}
-  .date > select {
-    background-color: #f9f9f9;
-    border: none;
-    color: #0088cc;
-    cursor: pointer;
-    flex: 1;
-    font-weight: 700;
-    margin: 0;
-    outline: none;
-    padding: 4px;
-    text-align-last: center;
-    transition: opacity .3s;
-    transition: color .3s;
-    -webkit-appearance: none;
-  }
-  .date > select:first-child {
-    border-radius: 4px 0 0 4px;
-    padding-right: 0;
-  }
-  .date > select:last-child {
-    border-radius: 0 4px 4px 0;
-    padding-left: 0;
-  }
-  .date:hover > select {
-    color: rgba(0,0,0,.2);
-    /*opacity: .2;*/
-  }
-  .date:hover > select:hover {
-    color: #0088cc;
-    /*opacity: 1;*/
-  }
 .legal {
   bottom: 0;
   color: rgba(66,74,80,.4);
@@ -213,6 +105,7 @@ th {
   .legal > a:hover {
     color: rgba(66,74,80,.8);
   }
+
 .menu {
   background-color: #fff;
   bottom: 0;
@@ -229,17 +122,19 @@ th {
 body.menu-closed > .menu {
   left: -360px;
 }
-  .menu > .header {
+  .menu > header {
     align-items: center;
     background-color: #fff;
     border-bottom: 1px solid rgba(0,0,0,.1);
     display: flex;
+    flex: 1;
+    flex-direction: row;
     height: 48px;
     position: fixed;
     transition: inherit;
     width: 360px;
   }
-    .menu > .header > .title {
+    .menu > header > .title {
       color: rgba(0,0,0,.5);
       flex: 1;
       font-size: 12px;
@@ -247,7 +142,7 @@ body.menu-closed > .menu {
       padding: 10px;
       padding: 24px 16px 16px 16px;
     }
-    .menu > .header > .btn-close {
+    .menu > header > .btn-close {
       background: transparent url("data:image/svg+xml,%3Csvg width='16px' height='16px' viewBox='16 16 16 16' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cpath d='M25.121,23.707 L31.414,17.414 L30,16 L23.707,22.293 L17.414,16 L16,17.414 L22.293,23.707 L16,30 L17.414,31.414 L23.707,25.121 L30,31.414 L31.414,30 L25.121,23.707 Z' fill='%23000000'%3E%3C/path%3E%3C/svg%3E") center no-repeat;
       cursor: pointer;
       /*float: right;*/
@@ -256,12 +151,110 @@ body.menu-closed > .menu {
       transition: opacity .3s;
       width: 48px;
     }
-    .menu > .header > .btn-close:hover {
+    .menu > header > .btn-close:hover {
       opacity: 1;
     }
-  .menu > column:first-of-type {
-    margin-top: 64px;
+  .menu > ul {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
   }
+    .menu > ul:first-of-type {
+      margin-top: 49px;
+    }
+      .menu > ul > li {
+        align-items: center;
+        border-bottom: 1px solid rgba(0,0,0,.08);
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        margin-left: 16px;
+      }
+        .menu > ul > li > .input {
+          border-left: 1px solid rgba(0,0,0,.08);
+          display: flex;
+          flex: 6;
+        }
+        .menu > ul > li > .input.disabled {
+          border-left: 1px solid rgba(0,0,0,0);
+        }
+        .menu > ul > li > .input.date > select {
+          border: 0;
+          border-radius: 0;
+          color: #0088cc;
+          cursor: pointer;
+          flex: 1;
+          font-weight: 700;
+          margin: 0;
+          outline: none;
+          padding: 10px 12px;
+          text-align-last: right;
+          transition: color .3s, padding .3s;
+          -webkit-appearance: none;
+        }
+        .menu > ul > li > .input.date > select:first-child {
+          padding-right: 0;
+        }
+        .menu > ul > li > .input.date > select:last-child {
+          padding-left: 0;
+        }
+        .menu > ul > li > .input.date:hover > select {
+          color: rgba(0,0,0,.2);
+        }
+        .menu > ul > li > .input.date:hover > select:hover {
+          color: #0088cc;
+        }
+          .menu > ul > li > .input > input {
+            background-color: #f9f9f9;
+            border: 0;
+            color: #0088cc;
+            font-weight: 700;
+            margin: 0;
+            outline: none;
+            padding: 10px 12px;
+            text-align: right;
+            transition: border .3s, box-shadow .3s, padding .3s;
+            width: 100%;
+          }
+            .menu > ul > li > .input > input.slave {
+              color: rgba(0,0,0,.5);
+              font-weight: 400;
+            }
+            .menu > ul > li > .input > input:hover,
+            .menu > ul > li > .input > input:focus {
+              background-color: #f3f3f3;
+            }
+          .menu > ul > li > .input > input[type='checkbox'] {
+            margin: 0;
+            width: auto;
+          }
+          .menu > ul > li > .input > input:disabled {
+            background-color: transparent;
+            border: 1px solid rgba(0,0,0,0);
+            color: rgba(0,0,0,.5);
+            font-weight: inherit;
+            -webkit-text-fill-color: rgba(0,0,0,.5);
+          }
+            .menu > ul > li > .input > input:disabled:hover {
+              border: 1px solid rgba(0,0,0,0);
+            }
+        .menu > ul > li > .label {
+          align-items: center;
+          color: rgba(0,0,0,.5);
+          display: flex;
+          flex: 12;
+          font-size: 14px;
+        }
+          .menu > ul > li > .label.sub {
+            color: rgba(0,0,0,.3);
+            font-size: 13px;
+            text-indent: 16px;
+          }
+            .menu > ul > li > .label.sub > span {
+              text-indent: 0;
+            }
 .main {
   align-items: center;
   display: flex;
@@ -286,21 +279,69 @@ body.menu-closed > .menu {
     font-size: 24px;
     line-height: 52px;
   }
+  .main > .locations {
+    display: flex;
+    /*flex: 1;*/
+    margin: 18vh auto 6vh;
+    max-width: 680px;
+    text-align: center;
+    transition: margin .3s;
+    max-width: 95vw;
+  }
+    .main > .locations > li {
+      align-items: center;
+      cursor: pointer;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      min-width: 96px;
+    }
+      .main > .locations > li > .avatar {
+        background: #fff center/cover no-repeat;
+        border-radius: 40px;
+        box-shadow: inset 0 0 0 2px rgba(0,0,0,1), 0 0 0 rgb(0,0,0);
+        -webkit-filter: brightness(100%) contrast(90%) opacity(20%) saturate(20%);
+        filter: brightness(100%) contrast(90%) opacity(20%) saturate(20%);
+        height: 72px;
+        position: relative;
+        transition: box-shadow .3s, filter .3s;
+        width: 72px;
+        }
+          .main > .locations > li:hover > .avatar {
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,.1), 0 0 0 rgb(0,0,0);
+            -webkit-filter: brightness(100%) contrast(95%) opacity(60%) saturate(60%);
+            filter: brightness(100%) contrast(95%) opacity(60%) saturate(60%);
+          }
+          .main > .locations > li.selected > .avatar,
+          .main > .locations > li.selected:hover > .avatar {
+            box-shadow: inset 0 0 0 0 rgb(0,0,0), 0 3px 12px rgba(0,0,0,.15);
+            -webkit-filter: none;
+            filter: none;
+          }
+      .main > .locations > li > .label {
+        color: rgba(66,74,80,.3);
+        margin-top: 8px;
+        transition: color .3s;
+      }
+        .main > .locations > li.selected > .label,
+        .main > .locations > li:hover > .label {
+          color: rgb(66,74,80);
+        }
   .main > .insight {
     flex: 1;
     font-size: 28px;
     line-height: 38px;
-    margin: 30vh 16px;
+    margin: 0 16px;
     max-width: 664px;
     text-align: center;
     transition: margin .3s;
   }
-    .main > .insight > i-input {
+    .main > .insight > .input {
       color: #0088cc;
       font-weight: 700;
       white-space: nowrap;
     }
-      .main > .insight > i-input.disabled {
+      .main > .insight > .input.disabled {
         color: inherit;
         -webkit-text-fill-color: #424a50;
       }
@@ -321,17 +362,28 @@ body.menu-closed > .menu {
       margin-top: 16px;
     }
   .main > .visualization {
-    display: none;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
     margin: 0 auto;
     max-width: 664px;
   }
   .main > .checkboxes {
-    display: none;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
     margin: 20px auto auto;
     max-width: 664px;
   }
-    .main > .checkboxes > cell {
+    .main > .checkboxes > .input {
+      align-items: center;
+      display: flex;
+      flex: 1;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      height: 32px;
       justify-content: flex-start;
+      margin: 0 12px 0 16px;
       visibility: hidden;
     }
 
@@ -340,7 +392,11 @@ body.menu-closed > .menu {
   position: relative;
 }
 .sparkline_dates {
+  align-items: flex-start;
   border-top: 1px solid rgba(0,0,0,.1);
+  display: flex;
+  flex: 1;
+  flex-direction: row;
   padding-top: 10px;
 }
   .sparkline_dates > div {
@@ -389,6 +445,19 @@ and (max-width : 859px) {
       line-height: 36px;
       margin: 8px;
     }
+    .main > .locations > li {
+      min-width: 90px;
+    }
+      .main > .locations > li > .avatar {
+        height: 64px;
+        width: 64px;
+      }
+      .main > .locations > li > .label {
+        font-size: 12px;
+      }
+    .main > .insight {
+      /*margin-top: 40px;*/
+    }
     body.menu-open > .main > .tint {
       display: block;
     }
@@ -403,33 +472,25 @@ and (max-width : 859px) {
 /* Small width (phones) */
 @media only screen
 and (max-width : 479px) {
-  cell {
-    border-bottom: 1px solid rgba(0,0,0,.1);
-    height: 48px;
-    margin: 0;
-    padding: 0 0 0 16px;
+  .menu {
+    width: 280px;
   }
-    cell > c-input {
-      border-left: 1px solid rgba(0,0,0,.1);
-      height: 100%;
+    body.menu-closed > .menu {
+      left: -100%;
     }
-    cell > c-input > input,
-    cell > c-input > input:hover,
-    cell > c-input > input:focus,
-    .date,
-    .date:hover {
-      border: 0;
-      border-radius: 0;
+    .menu > header {
+      width: 280px;
     }
-    .date,
-    .date:hover {
-      border-left: 1px solid rgba(0,0,0,.1);
+    .menu > ul:first-of-type {
+      margin-top: 48px;
     }
-    cell > c-input > input,
-    .date > select,
-    .date > select:last-child {
-      padding: 0 12px 0 0;
-    }
+      .menu > ul > li > .input > input,
+      .menu > ul > li > .input.date > select {
+        padding: 15px 8px;
+      }
+      .menu > ul > li > .input.date > select:first-child{
+        text-align-last: left;
+      }
   .main {
     margin-left: auto;
   }
@@ -455,17 +516,5 @@ and (max-width : 479px) {
     }
     .sparkline_dates > div:nth-of-type(even) {
       color: transparent;
-    }
-  .menu {
-    width: 280px;
-  }
-    .menu > column:first-of-type {
-      margin-top: 48px;
-    }
-    body.menu-closed > .menu {
-      left: -100%;
-    }
-    .menu > .header {
-      width: 280px;
     }
 }
