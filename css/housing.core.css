@@ -17,7 +17,7 @@ body {
 a {
   text-decoration: none;
   color: rgba(0,136,204,.5);
-  transition: color .3s;
+  transition: color .1s;
 }
 a:hover {
   color: rgba(0,136,204,1);
@@ -115,12 +115,14 @@ th {
     max-width: 100vw;
     min-height: 300px;
     position: fixed;
-    top: 130px;
+    top: 0;
     z-index: 1;
   }
     .card.mortgage > .content {
       margin: 0 auto;
       max-width: 360px;
+      position: relative;
+      top: 130px;
     }
     .card.mortgage .title {
       font-size: 24px;
@@ -214,15 +216,39 @@ th {
           color: rgba(0,0,0,.3);
         }*/
       /**/
-  .card > header {
-    /*background-color: #fafafa;*/
+  .card > .head {
+    align-items: baseline;
     border-radius: 10px 10px 0 0;
-    padding: 16px 16px 12px;
-    font-size: 18px;
-    font-weight: 600;
+    display: flex;
+    flex-direction: row;
     margin-bottom: 8px;
   }
-    .card.tabbed > header {
+  .card > .head > header {
+    border-radius: 10px 10px 0 0;
+    flex: 1 auto;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 16px 16px 12px;
+  }
+    .card > .head > .action {
+      border-radius: 24px;
+      color: #0088cc;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 16px;
+      padding: 8px 12px;
+      text-align: right;
+      text-transform: uppercase;
+      transition: background-color .1s, color .1s;
+    }
+    .card > .head > .action:last-of-type {
+      margin-right: 16px;
+    }
+      .card > .head > .action:hover {
+        background-color: rgba(0,0,0,.04);
+      }
+    .card.tabbed > .head {
       background-color: #fafafa;
       margin-bottom: 0;
     }
@@ -369,16 +395,18 @@ th {
 
 .floater {
   background-color: transparent;
-  bottom: -100px;
+  opacity: 0;
   overflow: auto;
   position: fixed;
-  transition: box-shadow .3s, bottom .3s, width .3s;
+  transition: box-shadow .3s, opacity .3s, top .3s, width .3s;
+  top: 0;
   width: 100vw;
   z-index: 2;
   -webkit-overflow-scrolling: touch;
 }
   .floater.show {
-    bottom: 0;
+    opacity: 1;
+    top: 82px;
   }
   /*.floater > div {
     background-color: #049DCA;
@@ -441,7 +469,7 @@ th {
     text-align: center;
   }
     .footer > .share > li {
-      color: rgba(66,74,80,.6);
+      color: rgba(0,0,0,.5);
       line-height: 24px;
       margin-right: 32px;
       text-transform: uppercase;
@@ -461,22 +489,21 @@ th {
         filter: none;
       }
   .footer > .legal {
-    color: rgba(66,74,80,.4);
+    color: rgba(0,0,0,.3);
     flex: 1;
     font-size: 12px;
     margin: 8px auto;
     text-align: center;
   }
     .footer > .legal > a {
-      color: rgba(66,74,80,.4);
+      color: rgba(0,0,0,.3);
       text-decoration: none;
     }
     .footer > .legal > a:hover {
-      color: rgba(66,74,80,.8);
+      color: rgba(0,0,0,.5);
     }
 
 .main {
-  padding-bottom: 100px;
   padding-top: 130px;
   position: relative;
   top: calc(100vh - 304px);
@@ -667,7 +694,7 @@ th {
   .top-bar > h1 {
     align-self: center;
     line-height: 0;
-    padding: 8px 0 16px;
+    padding: 8px 0 8px;
   }
     .top-bar > h1 > a > img {
       display: block;
@@ -676,7 +703,7 @@ th {
   .top-bar > .locations {
     display: flex;
     /*flex: 1;*/
-    margin: 0 auto 8px;
+    margin: 8px auto;
     max-width: 680px;
     text-align: center;
     transition: margin .3s;
@@ -699,7 +726,7 @@ th {
         filter: brightness(100%) contrast(90%) opacity(20%) saturate(20%);
         height: 48px;
         position: relative;
-        transition: box-shadow .3s, filter .3s;
+        transition: box-shadow .3s, filter .3s, height .3s, width .3s, opacity .2s;
         width: 48px;
         }
           .top-bar > .locations > li:hover > .avatar {
@@ -714,16 +741,36 @@ th {
             filter: none;
           }
       .top-bar > .locations > li > .label {
-        color: rgba(66,74,80,.3);
+        color: rgba(0,0,0,.3);
         font-size: 10px;
+        font-weight: 600;
         margin-top: 8px;
-        transition: color .3s;
+        transition: color .3s, margin .3s;
       }
-        .top-bar > .locations > li.selected > .label,
         .top-bar > .locations > li:hover > .label {
-          color: rgb(66,74,80);
+          color: rgba(0,0,0,.5);
         }
-
+        .top-bar > .locations > li.selected > .label {
+          color: rgba(0,0,0,.8);
+        }
+  .top-bar > .locations.collapsed {
+    margin: 0 auto;
+  }
+    .top-bar > .locations.collapsed > li.selected {
+      border-bottom: 4px solid #F00563;
+    }
+    .top-bar > .locations.collapsed > li > .avatar {
+      height: 0;
+      opacity: 0;
+      width: 0;
+    }
+    .top-bar > .locations.collapsed > li > .label {
+      margin: 12px 0 8px;
+      transition: color .1s, margin .3s;
+    }
+      .top-bar > .locations.collapsed > li.selected > .label {
+        color: #F00563;
+      }
 
 
 
@@ -786,7 +833,56 @@ th {
   color: inherit;
   font-size: 14px;
 }*/
-
+.prompt {
+  align-items: center;
+  background-color: rgba(0,0,0,.5);
+  display: flex;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 11;
+}
+  .prompt > .box {
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 0 auto;
+    width: 360px;
+  }
+    .prompt > .box > .title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 16px;
+    }
+    .prompt > .box > .body {
+      font-size: 14px;
+      margin: 0 16px 8px;
+    }
+    .prompt > .box > ul {
+      /*display: flex;*/
+      /*flex-direction: row;*/
+      float: right;
+      /*justify-content: flex-end;*/
+      margin: 0 12px;
+    }
+      .prompt > .box > ul > li {
+        color: #0088cc;
+        cursor: pointer;
+        float: left;
+        font-size: 11px;
+        font-weight: 700;
+        line-height: 16px;
+        padding: 16px 12px;
+        text-align: right;
+        text-transform: uppercase;
+        transition: color .1s;
+      }
+        .prompt > .box > ul:hover > li {
+          color: rgba(0,0,0,.3);
+        }
+        .prompt > .box > ul > li:hover {
+          color: #0088cc;
+        }
 
 /* Xsmall width (tiny phones) */
 @media only screen
@@ -825,8 +921,13 @@ and (min-width : 480px) {
       box-shadow: 0 1px 4px rgba(0,0,0,.1);
       margin: 16px auto;
       position: unset;
+      top: auto;
+      transition: opacity .3s;
       width: 360px;
     }
+      .main > .card.mortgage > .content {
+        top: auto;
+      }
   /* vizualization */
   .sparkline_dates > div {
     overflow: auto;
@@ -867,13 +968,16 @@ and (min-width : 860px) {
         width: 320px;
         z-index: 3;
       }
-    .card.edit > header {
+    .card.edit > .head > header {
       background-color: transparent;
       padding-left: 24px;
       /*border-radius: 10px 10px 0 0;
       padding: 16px 16px 12px;
       font-size: 18px;
       font-weight: 600;*/
+    }
+    .card > .head > .action:last-of-type {
+      margin-right: 0;
     }
   .floater > div {
     margin-left: 352px;
