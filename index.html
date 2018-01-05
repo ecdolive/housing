@@ -44,6 +44,13 @@
       ga('create', 'UA-23679923-7', 'auto');
       ga('send', 'pageview');
     </script>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-4771334075938057",
+        enable_page_level_ads: true
+      });
+    </script>
   </head>
   <body>
     <div class="top-bar">
@@ -187,10 +194,6 @@
                 <input id="extra" data-cookie="extra">
                 <span>/month</span>
               </div>
-            </li>
-            <li>
-              <div class="label">Yearly appreciation rate</div>
-              <div class="input"><input id="appreciation" data-cookie="appreciation"></div>
             </li>
             <li class="hidden">
               <div class="label">Monthly rent comparison</div>
@@ -417,6 +420,17 @@
       <section class="card amoritization">
         <div id="tab-value" class="tab chart-wrapper visible">
           <div id="chart-value" class="chart"></div>
+        </div>
+        <div class="menu">
+          <ul>
+            <li>
+              <div class="label">Appreciation rate</div>
+              <div class="input">
+                <input id="appreciation" data-cookie="appreciation">
+                <span>/year</span>
+              </div>
+            </li>
+          </ul>
         </div>
       </section>
       <footer class="footer">
